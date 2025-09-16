@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
             Assign2_3Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
                     innerPadding ->
-                    Column(modifier = Modifier.padding(innerPadding)) {
+                    Column(modifier = Modifier.padding(innerPadding), horizontalAlignment = Alignment.CenterHorizontally) {
                         TextInput(modifier = Modifier)
                         ClickCounter(modifier = Modifier)
                     }
@@ -68,7 +69,7 @@ fun ClickCounterPreview() {
 @Composable
 fun TextInput(modifier: Modifier) {
     var textState: String? by remember { mutableStateOf(null) }
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = modifier.padding(16.dp)) {
         TextField(
             value = textState ?: "",
             onValueChange = { newText: String ->
@@ -77,7 +78,7 @@ fun TextInput(modifier: Modifier) {
             label = { Text("Enter your name") },
             modifier = Modifier.fillMaxWidth()
         )
-        textState?.let { Text(text = "Hello, $it!") }
+        textState?.let { Text(text = "Hello, $it!", modifier = modifier.padding(top = 16.dp, bottom = 8.dp)) }
         ShowPet(textState, modifier)
     }
 }
@@ -97,10 +98,10 @@ fun ShowPet(inputString: String?, modifier: Modifier) {
         "Alice" -> "Cat"
         "Bob" -> "Dog"
         "Charlie" -> "Bird"
-        else -> "Extinct"
+        else -> "hangry girlfriend"
     }
     inputString?.let{
-        Text(text = "Your favorite animal is ${animal.lowercase()}.")
+        Text(text = "Your favorite animal is your ${animal.lowercase()}.")
     }
 }
 
