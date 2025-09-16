@@ -32,11 +32,6 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
                     innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
-
-                        Greeting(
-                            name = "Android",
-                            modifier = Modifier.padding(innerPadding)
-                        )
                         TextInput(modifier = Modifier)
                         ClickCounter(modifier = Modifier)
                     }
@@ -114,21 +109,5 @@ fun ShowPet(inputString: String?, modifier: Modifier) {
 fun ShowPetPreview() {
     Assign2_3Theme {
         ShowPet("Bob", modifier = Modifier)
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Assign2_3Theme {
-        Greeting("Android")
     }
 }
