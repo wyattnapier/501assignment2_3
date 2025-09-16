@@ -83,7 +83,7 @@ fun TextInput(modifier: Modifier) {
             modifier = Modifier.fillMaxWidth()
         )
         textState?.let { Text(text = "Hello, $it!") }
-//        ShowPet(textState)
+        ShowPet(textState, modifier)
     }
 }
 
@@ -95,13 +95,27 @@ fun TextInputPreview() {
     }
 }
 
-//@Composable
-//fun ShowPet(modifier: Modifier) {
-//    var pet by rememberSaveable { mutableStateOf("") }
-////    when () {
-////
-////    }
-//}
+@Composable
+fun ShowPet(inputString: String?, modifier: Modifier) {
+    var animal: String by rememberSaveable { mutableStateOf("") }
+    animal = when (inputString) {
+        "Alice" -> "Cat"
+        "Bob" -> "Dog"
+        "Charlie" -> "Bird"
+        else -> "Extinct"
+    }
+    inputString?.let{
+        Text(text = "Your favorite animal is ${animal.lowercase()}.")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ShowPetPreview() {
+    Assign2_3Theme {
+        ShowPet("Bob", modifier = Modifier)
+    }
+}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
